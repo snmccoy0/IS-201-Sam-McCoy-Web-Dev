@@ -1,6 +1,6 @@
-body{
+/* body{
     background-color: #ffffff;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
 }
 .common{
@@ -23,13 +23,13 @@ body{
     bottom: 47px;
     z-index: 1;
     padding-top: 40px;
-    border-right: solid white 1px #555555;
+    /* border-right: solid white 1px #555555; 
 }
 
 .mainbody{
     top: 107px;
     left: 114px;
-    right: 600
+    right: 600px;
     bottom: 47px;
     padding-right: 5px;
 }
@@ -46,7 +46,7 @@ body{
     right: 5px;
     width: 657px;
     bottom: 47px;
-    border-left: solid white 1px #555555;
+    /* border-left: solid white 1px #555555; 
     padding-left: 5px;
 }
 .bottomrightmenu{
@@ -54,9 +54,90 @@ body{
     right:5px;
     width: 657px;
     bottom: 47px;
-    border-left: solid white 1px #5555555;
+    /* border-left: solid white 1px #555555; 
     border-top: solid white 1px;
     
+}
+
+.footer{
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    height: 25px;
+    font-size: 8px;
+    color: #999999;
+    text-align: center;
+    padding-top: 15px;
+    position: fixed;
+}
+
+.subheader{
+    float: right;
+} */
+body{
+    background-color: #ffffff;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* This rule adds the main border to the outside of all sections */
+.common{
+    border: 2px solid white;
+    position: absolute;
+}
+
+.header{
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    height: 100px;
+    z-index: 2;
+}
+
+.leftmenu{
+    top: 107px;
+    left: 5px;
+    width: 106px;
+    bottom: 47px;
+    z-index: 1;
+    padding-top: 40px;
+    /* This removes the internal vertical line on its right side */
+    border-right: none;
+}
+
+.mainbody{
+    top: 107px;
+    left: 114px;
+    right: 680px; /* Moves the right edge 80px to the left */
+    bottom: 47px;
+    padding-right: 15px;
+    border-right: 1px solid #cccccc; /* Adds the new vertical line */
+}
+
+.lowermainbody{
+    top: 582px;
+    left: 114px;
+    right: 680px; /* Moves the right edge 80px to the left */
+    bottom: 47px;
+    border-top: 1px solid white;
+    border-right: 1px solid #cccccc; /* Adds the new vertical line */
+}
+
+.toprightmenu{
+    top: 107px;
+    right: 5px;
+    width: 577px; /* Decreased width by 80px (657 - 80) */
+    bottom: 47px;
+    border-left: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.bottomrightmenu{
+    top: 582px;
+    right:5px;
+    width: 577px; /* Decreased width by 80px (657 - 80) */
+    bottom: 47px;
+    border-left: none;
+    border-top: 1px solid white;
 }
 
 .footer{

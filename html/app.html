@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Trivia!</title>
+    <style>
+        /* This is the CSS for the app */
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #game-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        #question-text {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styles for showing correct/incorrect answers */
+        .btn.correct {
+            background-color: #28a745;
+        }
+
+        .btn.wrong {
+            background-color: #dc3545;
+        }
+        
+        #feedback-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        a {
+            color: #007bff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1>Football Trivia</h1>
+        <div id="question-text">Question goes here...</div>
+        <div id="answer-buttons" class="btn-grid">
+            </div>
+        <div id="feedback-text"></div>
+        <br>
+        <a href="dembelePage.html">Back to Dembélé Page</a>
+    </div>
+
+    <script>
+        const questionTextElement = document.getElementById('question-text');
+        const answerButtonsElement = document.getElementById('answer-buttons');
+        const feedbackTextElement = document.getElementById('feedback-text');
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const questions = [
+            {
+                question: "Which country won the first ever FIFA World Cup in 1930?",
+                answers: [
+                    { text: "Brazil", correct: false },
+                    { text: "Argentina", correct: false },
+                    { text: "Uruguay", correct: true },
+                    { text: "Italy", correct: false }
+                ]
+            },
+            {
+                question: "Which player has won the most Ballon d'Or awards?",
+                answers: [
+                    { text: "Cristiano Ronaldo", correct: false },
+                    { text: "Lionel Messi", correct: true },
+                    { text: "Michel Platini", correct: false },
+                    { text: "Johan Cruyff", correct: false }
+                ]
+            },
+            {
+                question: "Which club has won the most UEFA Champions League titles?",
+                answers: [
+                    { text: "AC Milan", correct: false },
+                    { text: "Liverpool", correct: false },
+                    { text: "Bayern Munich", correct: false },
+                    { text: "Real Madrid", correct: true }
+                ]
+            },
+            {
+                question: "Ousmane Dembélé won the World Cup with France in which year?",
+                answers: [
+                    { text: "2014", correct: false },
+                    { text: "2018", correct: true },
+                    { text: "2022", correct: false },
+                    { text: "2010", correct: false }
+                ]
+            }
+        ];
+
+        function startGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            showQuestion(questions[currentQuestionIndex]);
+        }
+
+        function showQuestion(question) {
+            questionTextElement.innerText = question.question;
+            answerButtonsElement.innerHTML = ''; // Clear old buttons
+            feedbackTextElement.innerText = '';
+
+            question.answers.forEach(answer => {
+                const button = document.createElement('button');
+                button.innerText = answer.text;
+                button.classList.add('btn');
+                if (answer.correct) {
+                    button.dataset.correct = answer.correct;
+                }
+                button.addEventListener('click', selectAnswer);
+                answerButtonsElement.appendChild(button);
+            });
+        }
+
+        function selectAnswer(e) {
+            const selectedButton = e.target;
+            const correct = selectedButton.dataset.correct === "true";
+
+            // Show feedback
+            if (correct) {
+                feedbackTextElement.innerText = "Correct!";
+                score++;
+            } else {
+                feedbackTextElement.innerText = "Wrong!";
+            }
+
+            // Highlight correct and wrong answers
+            Array.from(answerButtonsElement.children).forEach(button => {
+                if (button.dataset.correct === "true") {
+                    button.classList.add('correct');
+                } else {
+                    button.classList.add('wrong');
+                }
+                button.disabled = true; // Disable buttons after answering
+            });
+            
+            // Wait 2 seconds, then show next question or end game
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    showQuestion(questions[currentQuestionIndex]);
+                } else {
+                    endGame();
+                }
+            }, 2000);
+        }
+
+        function endGame() {
+            questionTextElement.innerText = `Game Over!`;
+            answerButtonsElement.innerHTML = '';
+            feedbackTextElement.innerText = `You scored ${score} out of ${questions.length}!`;
+        }
+
+
+        // Start the game when the page loads
+        startGame();
+    </script>
+
+</body>
+</html>

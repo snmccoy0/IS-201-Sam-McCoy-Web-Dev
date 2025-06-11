@@ -1,5 +1,4 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     color: black;
 }
@@ -13,7 +12,7 @@ li {
     font-weight: normal;
 }
 a {
-    color: maroon;
+    color: #0066cc;
     text-decoration: none;}
 /* We learned how to make comments in CSS and Html that won't affect the actual code */
 a:hover{
@@ -28,7 +27,7 @@ a:visited{
 .justify {
     text-align: justify;}
 .homebg{
-    background-color: lavender;}
+    background-color: #f0f2f5;}
 .bold{
     font-size: 25px;
     font-weight: bold;
